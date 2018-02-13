@@ -1,0 +1,23 @@
+<div class="content-area">
+    <h4>Configuration</h4>
+    <h6 *ngIf="location">File location</h6>
+    <p *ngIf="location">{{ location }}</p>
+    <h6 *ngIf="file">File content</h6>
+    <ng-container *ngIf="errors && errors.length > 0">
+        <div class="alert alert-danger">
+            <div class="alert-items">
+                <div *ngFor="let error of errors" class="alert-item static">
+                    <div class="alert-icon-wrapper">
+                        <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                    </div>
+                    <span class="alert-text">
+                        {{ error }}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="file">
+        <pre><code clr-code-highlight="language-json">{{ file }}</code></pre>
+    </ng-container>
+</div>

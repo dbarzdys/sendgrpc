@@ -1,0 +1,9 @@
+{
+    "servers": [
+        {
+            "name": "be-entity-events",
+            "protoPath": "protos/entity-events.proto",
+            "target": "http://be-entity-events:9999"
+        }
+    ]
+}

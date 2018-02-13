@@ -1,0 +1,15 @@
+<h5>Metadata <button class="btn btn-sm add-type" type="button" (click)="add()">+Add</button></h5>
+
+<section class="form-block" *ngIf="metadata.entries.length > 0">
+    <div class="form-box" *ngFor="let entry of metadata.entries">
+        <clr-icon class="remove-btn" shape="times" (click)="remove(entry)"></clr-icon>
+        <div class="meta-group">
+            <div class="key">
+                <input type="text" placeholder="Key..." [(ngModel)]="entry.key">
+            </div>
+            <div class="value">
+                <input type="text" placeholder="Value..." [(ngModel)]="entry.value">
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,97 @@
+:host {
+    h4 {
+        margin-top: 0;
+        color: #000;
+    }
+    h5 {
+        color: #000;
+    }
+    button.add-type {
+        text-transform: none;
+        margin-left: 0.5rem;
+        margin-top: 0.1rem;
+    }
+    input{
+        width: 100%;
+    }
+    section {
+        margin:  0.5rem 0.5rem 0.5rem 0;
+        border: 1px solid #ccc;
+        padding: 0 0;
+        border-radius: 3px;
+        .form-box {
+            padding: 0.5rem 1rem;
+            position: relative;
+            .remove-btn {
+                position: absolute;
+                top: 8px;
+                right: 8px;
+                cursor: pointer;
+                width: 18px;
+                height: 18px;
+            }
+        }
+        .form-box:not(:first-child) {
+            border-top: 1px solid #CCC;
+        }
+    }
+    h6 {
+        color: #000;
+        margin-top: 0.2rem;
+        font-weight: 400;
+    }
+    .meta-group {
+        display: flex;
+        flex-direction: row;
+        height: 1rem;
+        line-height: 1rem;
+        margin: 0.5rem 0;
+        .key {
+            max-width: 9rem;
+            min-width: 9rem;
+            display: block;
+            height: 1rem;
+            line-height: 1rem;
+            margin-right: 0.5rem;
+        }
+        .value {
+            height: 1rem;
+            line-height: 1rem;
+            flex: 0 1 auto;
+            width: 100%;
+        }
+    }
+    .form-group {
+        display: flex;
+        flex-direction: row;
+        height: 1rem;
+        line-height: 1rem;
+        margin: 0.5rem 0;
+        .btn-group {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        label.key {
+            max-width: 6rem;
+            min-width: 6rem;
+            display: block;
+            height: 1rem;
+            line-height: 1rem;
+            font-weight: 400;
+            color: #000;
+        }
+        .value {
+            height: 1rem;
+            line-height: 1rem;
+            flex: 0 1 auto;
+            width: 100%;
+        }
+        input {
+            width: 100%;
+        }
+    }
+    pre {
+        max-height: none;
+        overflow-y: hidden;
+    }
+}

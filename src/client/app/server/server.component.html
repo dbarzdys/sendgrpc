@@ -1,0 +1,54 @@
+<div class="alert alert-danger" *ngIf="error">
+    <div class="alert-items">
+        <div class="alert-item static">
+            <div class="alert-icon-wrapper">
+                <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+            </div>
+            <span class="alert-text">
+                {{ error }}
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="head" *ngIf="serverConfig">
+    <h4>
+        <clr-icon shape="block" style="width: 1rem; height: 1rem;"  class="is-solid"></clr-icon>
+        <span class="text">{{ serverConfig.name }}</span>
+        <ng-container *ngIf="serverConfig.target | sgIsAlive | async; let status">
+            <span *ngIf="status.alive" class="label label-success">ACTIVE</span>
+            <span *ngIf="!status.alive" class="label label-danger">INACTIVE</span>
+        </ng-container>
+    </h4>
+</div>
+
+
+<div class="wrap" *ngIf="serverConfig">
+    <nav class="sidenav">
+        <section class="sidenav-content">
+            <a routerLink="./details" routerLinkActive="active" class="nav-link">
+                Details
+            </a>
+            <a routerLink="./proto-file" routerLinkActive="active" class="nav-link">
+                Proto file
+            </a>
+            <div class="line"></div>
+            <ng-container *ngIf="server">
+                <section *ngFor="let service of server.services" class="nav-group collapsible">
+                    <input id="tabexample1" type="checkbox">
+                    <label for="tabexample1">{{ service.name }}</label>
+                    <ul class="nav-list" *ngIf="service.methods">
+                        <li>
+                            <a class="nav-link" *ngFor="let method of service.methods" routerLink="./service/{{ service.name }}/method/{{ method.name }}" routerLinkActive="active">
+                                {{ method.name }}
+                            </a>
+                        </li>
+                    </ul>
+                </section>
+            </ng-container>
+        </section>
+    </nav>
+    <div class="content-area">
+        <router-outlet></router-outlet>
+    </div>
+</div>
