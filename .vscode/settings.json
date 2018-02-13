@@ -1,0 +1,5 @@
+{
+    "LineCount.includes": [
+        "src/**/*"
+    ]
+}

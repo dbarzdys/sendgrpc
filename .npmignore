@@ -1,0 +1,16 @@
+/.vscode
+/e2e
+/node_modules
+/src
+/.angular-cli.json
+/.editorconfig
+/.gitignore
+/index.js
+/karma.conf.json
+/nodemon.json
+/protractor.conf.js
+/proxy.conf.json
+/tsconfig.client.json
+/tsconfig.json
+/tslint.json
+/Dockerfile

@@ -1,0 +1,30 @@
+<svg width="68" height="68" viewBox="0 0 68 68" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Frame</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(168 495)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M -168 -495L -100 -495L -100 -427L -168 -427L -168 -495Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Frame" clip-path="url(#clip-0)">
+<path d="M -168 -495L -100 -495L -100 -427L -168 -427L -168 -495Z" fill="#004A70"/>
+<g id="Vector 2">
+<use xlink:href="#path0_fill" transform="translate(-129.018 -466)" fill="#00283D"/>
+</g>
+<g id="Vector 2.1">
+<use xlink:href="#path1_fill" transform="matrix(-1 -8.71432e-08 8.77033e-08 -1 -139 -457.964)" fill="#00283D"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path2_fill" transform="translate(-168 -495)" fill="#C7C7C7"/>
+</g>
+<g id="Rectangle">
+<use xlink:href="#path3_fill" transform="translate(-131.673 -495)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 21.0182 0L 9.01819 0L 0 8.03571L 13.0182 8L 13.0182 18L 7.01819 18L 17.0182 28L 27.0182 18L 21.0182 18L 21.0182 0Z"/>
+<path id="path1_fill" d="M 21.0818 0L 10 0.0357047L 0 8.03571L 13 8.0357L 13 18.0357L 7 18.0357L 17 28.0357L 27 18.0357L 21 18.0357L 21.0818 0Z"/>
+<path id="path2_fill" d="M 68 17L 68 0L 36.3273 0L 0 68L 68 17Z"/>
+<path id="path3_fill" d="M 0 0L 31.6727 0L 31.6727 17L 0 17L 0 0Z"/>
+</defs>
+</svg>
