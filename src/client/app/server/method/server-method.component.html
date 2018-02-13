@@ -1,0 +1,33 @@
+<h4>{{ methodName }}</h4>
+
+<sg-server-method-metadata *ngIf="metadata"
+    [metadata]="metadata">
+</sg-server-method-metadata>
+
+<sg-server-method-field *ngIf="field"
+    path=''
+    [field]="field"
+    [fields]="fields"
+    [types]="types">
+</sg-server-method-field>
+<button class="btn btn-primary" (click)="send()">Send</button>
+<button class="btn" type="buttom" (click)="clear()">Clear</button>
+
+<ng-container *ngIf="error">
+    <div class="alert alert-danger">
+        <div class="alert-items">
+            <div class="alert-item static">
+                <div class="alert-icon-wrapper">
+                    <clr-icon class="alert-icon" shape="exclamation-circle"></clr-icon>
+                </div>
+                <span class="alert-text">
+                    {{ error }}
+                </span>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="response">
+    <pre><code [clr-code-highlight]="'language-json'">{{ response }}</code></pre>
+</ng-container>

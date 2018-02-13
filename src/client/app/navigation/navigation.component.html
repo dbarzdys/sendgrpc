@@ -1,0 +1,24 @@
+<clr-vertical-nav class="is-collapsed" [clrVerticalNavCollapsible]="true" [clrVerticalNavCollapsed]="true">
+    <a clrVerticalNavLink routerLink="/home" routerLinkActive="active">
+        <clr-icon shape="home" clrVerticalNavIcon class="is-solid"></clr-icon>
+        Home
+    </a>
+    <clr-vertical-nav-group routerLinkActive="active">
+        <a hidden aria-hidden="true">
+        </a>
+        <clr-icon shape="blocks-group" class="is-solid" clrVerticalNavIcon></clr-icon>
+        Servers
+        <clr-vertical-nav-group-children> 
+            <ng-container *ngIf="servers">
+                <a *ngFor="let server of servers" clrVerticalNavLink routerLink="/server/{{server.hash}}" routerLinkActive="active">
+                    <clr-icon shape="block" class="is-solid" clrVerticalNavIcon></clr-icon>
+                    {{ server.name }}
+                </a>
+            </ng-container>
+        </clr-vertical-nav-group-children>
+    </clr-vertical-nav-group>
+    <a clrVerticalNavLink  routerLink="/config" routerLinkActive="active">
+        <clr-icon shape="cog" class="is-solid" clrVerticalNavIcon></clr-icon>
+        Configuration
+    </a>
+</clr-vertical-nav>

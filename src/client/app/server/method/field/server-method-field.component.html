@@ -1,0 +1,49 @@
+<ng-container *ngIf="field">
+    <ng-container [ngSwitch]="field.type">
+        <ng-container *ngSwitchCase="'string'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="text" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+            <ng-container *ngIf="type && type.isEnum">
+                <div class="form-group">
+                    <label class="key">Type {{ value }}</label>
+                    <div class="value">
+                        <div class="btn-group btn-sm">
+                            <div *ngFor="let option of type.values; let idx = index" class="radio btn"  (click)="setValue(option.value)">
+                                <input type="radio" [name]="path" value="{{ option.value }}" [checked]="option.value === getValue()">
+                                <label>{{ option.name }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="type && !type.isEnum">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '.' + field.name + (field.repeated ? ('[' + childId + ']') : '' )"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+</ng-container>

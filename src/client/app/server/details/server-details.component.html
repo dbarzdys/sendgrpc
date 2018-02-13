@@ -1,0 +1,20 @@
+<table class="table table-vertical" *ngIf="server">
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>{{ server.name }}</td>
+        </tr>
+        <tr>
+            <th>Target</th>
+            <td>{{ server.target }}</td>
+        </tr>
+        <tr>
+            <th>Proto file path</th>
+            <td>{{ server.protoPath }}</td>
+        </tr>
+        <tr>
+            <th>SSL certificate path</th>
+            <td>{{ server.certPath ? server.certPath : '-' }}</td>
+        </tr>
+    </tbody>
+</table>
