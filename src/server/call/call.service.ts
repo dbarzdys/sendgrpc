@@ -8,6 +8,7 @@ import { extractServices } from '../server/utils';
 import { Call } from '../../common/models/call';
 
 import * as url from 'url';
+import * as path from 'path';
 @Component()
 export class CallService {
     constructor(
@@ -18,12 +19,18 @@ export class CallService {
         const config = this.configService.read();
         const server = config.servers.find((s) => s.hash === call.server);
         let nbase: NamespaceBase;
-        try {
-            nbase = await this.serverService.read(server.protoPath);
-        } catch (err) {
-            throw new Error(`Could not read proto file: ${server.protoPath}. ${err}`);
+        let fp: string;
+        if (path.isAbsolute(server.protoPath)) {
+            fp = server.protoPath;
+        } else {
+            fp = path.join(path.dirname(this.configService.getPath()), server.protoPath);
         }
-        const services = extractServices(nbase, server.protoPath);
+        try {
+            nbase = await this.serverService.read(fp);
+        } catch (err) {
+            throw new Error(`Could not read proto file: ${fp}. ${err}`);
+        }
+        const services = extractServices(nbase, fp);
         const service = services.find((s) => s.name === call.service);
         const clientClass = loadObject(service) as Constructor<Client>;
         const options: CallOptions = {

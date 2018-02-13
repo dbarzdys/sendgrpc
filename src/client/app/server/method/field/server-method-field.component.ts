@@ -41,12 +41,35 @@ export class ServerMethodFieldComponent implements OnInit {
         this.fields.set(this.path + '.' + this.field.name, v);
     }
     public getValue() {
-        if (this.fields.has(this.path + '.' + this.field.name)) {
-            return this.fields.get(this.path + '.' + this.field.name);
+        const path = this.path + '.' + this.field.name;
+        if (this.fields.has(path)) {
+            return this.fields.get(path);
         } else {
-            if (this.type && this.type.isEnum) {
-                return 0;
+            let val: any;
+            switch (this.field.type) {
+                case 'string':
+                val = '';
+                break;
+                case 'bool':
+                val = false;
+                break;
+                case 'float':
+                case 'double':
+                val = 0.0;
+                break;
+                case 'int32':
+                case 'int64':
+                case 'uint32':
+                case 'uint64':
+                val = 0;
+                break;
+                default:
             }
+            if (this.type && this.type.isEnum) {
+                val = 0;
+            }
+            this.fields.set(path, val);
+            return this.getValue();
         }
     }
     public removeChild(childId: number) {

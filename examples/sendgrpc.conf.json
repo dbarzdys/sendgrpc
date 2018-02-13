@@ -3,7 +3,12 @@
         {
             "name": "be-entity-events",
             "protoPath": "protos/entity-events.proto",
-            "target": "http://be-entity-events:9999"
+            "target": "http://google.com"
+        },
+        {
+            "name": "be-entity-events-two",
+            "protoPath": "protos/entity-events.proto",
+            "target": "http://github.com"
         }
     ]
 }
