@@ -9,5 +9,8 @@ async function bootstrap() {
 	app.use(express.static(join(__dirname, '..', 'client')));
 	app.setGlobalPrefix('/api');
 	await app.listen(global.PORT);
+	app.use('*', (req, res)  => {
+		res.sendfile(join(__dirname, '..', 'client', 'index.html'));
+	});
 }
 bootstrap();

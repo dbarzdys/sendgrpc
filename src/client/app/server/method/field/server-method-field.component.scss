@@ -86,8 +86,19 @@
             flex: 0 1 auto;
             width: 100%;
         }
+        .select {
+            max-width: 4rem;
+            min-width: 4rem;
+            display: block;
+            height: 1rem;
+            line-height: 1rem;
+            margin-left: 0.5rem;
+        }
         input {
             width: 100%;
+            &[type="number"]{
+                width: 9rem;
+            }
         }
     }
 }

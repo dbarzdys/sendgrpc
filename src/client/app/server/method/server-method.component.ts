@@ -126,7 +126,7 @@ export class ServerMethodComponent implements OnInit, AfterViewChecked {
                     if (!(key in obj)) {
                         obj[key] = {};
                     }
-                    obj[key] = obj[key];
+                    obj = obj[key];
                 }
             });
         });

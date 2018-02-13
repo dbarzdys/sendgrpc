@@ -8,6 +8,86 @@
                 </div>
             </div>
         </ng-container>
+        <ng-container *ngSwitchCase="'bool'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <div class="btn-group btn-sm">
+                        <div class="radio btn"  (click)="setValue(false)">
+                            <input type="radio" [name]="path" value="false" [checked]="!getValue()">
+                            <label>FALSE</label>
+                        </div>
+                        <div class="radio btn"  (click)="setValue(true)">
+                            <input type="radio" [name]="path" value="true" [checked]="getValue()">
+                            <label>TRUE</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'double'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="number" step="0.01" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'float'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="number" step="0.01" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'int32'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="number" min="-2147483647" max="2147483647" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'int64'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="number" min="-9223372036854775808" max="9223372036854775808" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'uint32'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="number" min="0" max="4294967295" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngSwitchCase="'uint64'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="number" min="0" max="18446744073709551615" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+            </div>
+        </ng-container>
+        <!-- <ng-container *ngSwitchCase="'bytes'">
+            <div class="form-group">
+                <label class="key">{{ field.name }}</label>
+                <div class="value">
+                    <input type="text" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
+                </div>
+                <div class="select">
+                    <select>
+                        <option>ascii</option>
+                        <option>base64</option>
+                        <option>hex</option>
+                    </select>
+                </div>
+            </div>
+        </ng-container> -->
         <ng-container *ngSwitchDefault>
             <ng-container *ngIf="type && type.isEnum">
                 <div class="form-group">

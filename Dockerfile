@@ -3,7 +3,7 @@ WORKDIR /etc/sendgrpc
 
 COPY /examples ./
 
-RUN npm install -g sendgrpc@0.1.1
+RUN npm install -g sendgrpc@0.1.4
 
 USER node
 CMD sendgrpc
