@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+package pb;
+
+service ExampleService {
+    rpc Create(CreateRequest) returns (CreateResponse);
+    rpc Get(GetRequest) returns (GetResponse);
+}
+
+message ExampleObj {
+    string id = 1;
+    string text = 2;
+    bool bool = 3;
+    int32 number = 4;
+    ExampleObjType type = 5;
+    repeated ExampleChildObj childs = 6;
+    repeated bool bools = 7;
+    repeated int32 ints = 8;
+    repeated string strings = 9;
+}
+
+enum ExampleObjType {
+    ONE = 0;
+    TWO = 1;
+    THREE = 2;
+}
+
+message ExampleChildObj {
+    string title = 1;
+    string message = 2;
+}
+
+
+message CreateRequest {
+    repeated ExampleObj List = 1;
+}
+
+message CreateResponse {
+    repeated ExampleObj List = 1;
+    ExampleError Error = 2;
+}
+
+message GetRequest {
+    string ID = 1;
+}
+
+message GetResponse {
+    repeated ExampleObj List = 1;
+    ExampleError Error = 2;
+}
+
+message ExampleError {
+    string message = 1;
+    repeated google.protobuf.Any details = 2;
+}

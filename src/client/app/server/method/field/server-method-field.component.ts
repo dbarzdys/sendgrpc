@@ -27,6 +27,18 @@ export class ServerMethodFieldComponent implements OnInit {
     }
     public ngOnInit() {
         this.type = this.types.find((t) => t.name === this.field.type);
+        if (!this.type) {
+            this.type = {
+                fields: [{
+                    id: 1,
+                    name: '',
+                    repeated: false,
+                    type: this.field.type,
+                }],
+                name: this.field.type,
+                isEnum: false,
+            };
+        }
         if (this.path === '') {
             this.addChild();
         }
@@ -38,31 +50,31 @@ export class ServerMethodFieldComponent implements OnInit {
         }));
     }
     public setValue(v: any) {
-        this.fields.set(this.path + '.' + this.field.name, v);
+        this.fields.set(this.path , v);
     }
     public getValue() {
-        const path = this.path + '.' + this.field.name;
+        const path = this.path;
         if (this.fields.has(path)) {
             return this.fields.get(path);
         } else {
             let val: any;
             switch (this.field.type) {
                 case 'string':
-                val = '';
-                break;
+                    val = '';
+                    break;
                 case 'bool':
-                val = false;
-                break;
+                    val = false;
+                    break;
                 case 'float':
                 case 'double':
-                val = 0.0;
-                break;
+                    val = 0.0;
+                    break;
                 case 'int32':
                 case 'int64':
                 case 'uint32':
                 case 'uint64':
-                val = 0;
-                break;
+                    val = 0;
+                    break;
                 default:
             }
             if (this.type && this.type.isEnum) {
@@ -76,7 +88,7 @@ export class ServerMethodFieldComponent implements OnInit {
         const child = this.children[childId];
         const queue = [];
         this.fields.forEach((v, key) => {
-            if (key.indexOf(this.path + '.' + this.field.name + (this.field.repeated ? ('[' + childId + ']') : '')) === 0) {
+            if (key.indexOf(this.path + (this.field.repeated ? ('[' + childId + ']') : '')) === 0) {
                 queue.push(key);
             }
         });

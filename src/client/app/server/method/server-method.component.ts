@@ -97,20 +97,27 @@ export class ServerMethodComponent implements OnInit, AfterViewChecked {
         const request = {};
         this.fields.forEach((v, k) => {
             const path = k.split('.');
-            path.splice(0, 2);
+            path.splice(0, 1);
             let obj = request;
             path.forEach((key, i) => {
+                const reg = key.match(/^(\w+)\[(\d)+\]$/i);
                 if (i === path.length - 1) {
-                    obj[key] = v;
+                    if (reg) {
+                        if (!obj[reg[1]]) {
+                            obj[reg[1]] = [];
+                        }
+                        obj[reg[1]].push(v);
+                    } else {
+                        obj[key] = v;
+                    }
                     return;
                 }
-                const reg = key.match(/^(\w+)\[(\d)+\]$/i);
                 if (reg) {
                     const prop = reg[1];
                     const id = reg[2];
                     if (!(prop in obj)) {
-                        obj[prop] = [];
                         const temp = {};
+                        obj[prop] = [];
                         obj[prop][id] = temp;
                         obj = temp;
                     } else {
