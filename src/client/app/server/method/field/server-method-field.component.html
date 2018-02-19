@@ -1,16 +1,38 @@
 <ng-container *ngIf="field">
     <ng-container [ngSwitch]="field.type">
         <ng-container *ngSwitchCase="'string'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="text" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'bool'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <div class="btn-group btn-sm">
                         <div class="radio btn"  (click)="setValue(false)">
@@ -24,54 +46,208 @@
                     </div>
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'double'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="number" step="0.01" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'float'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="number" step="0.01" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'int32'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="number" min="-2147483647" max="2147483647" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'int64'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="number" min="-9223372036854775808" max="9223372036854775808" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'uint32'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="number" min="0" max="4294967295" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <ng-container *ngSwitchCase="'uint64'">
-            <div class="form-group">
-                <label class="key">{{ field.name }}</label>
+            <div class="form-group" *ngIf="!field.repeated">
+                <label class="key" *ngIf="field.name">{{ field.name }}</label>
                 <div class="value">
                     <input type="number" min="0" max="18446744073709551615" step="1" [ngModel]="getValue()" (ngModelChange)="setValue($event)">
                 </div>
             </div>
+            <ng-container *ngIf="field.repeated">
+                <ng-container *ngIf="path">
+                    <h6>{{ field.name }} <button *ngIf="children.length === 0 || field.repeated" class="btn btn-sm add-type" type="button" (click)="addChild()">+{{ type.name }}</button></h6>
+                </ng-container>
+                <ng-container *ngIf="!path">
+                    <h5>{{ field.name }}</h5>
+                </ng-container>
+                <ng-container *ngIf="children.length > 0">
+                    <section class="form-block">
+                        <ng-container *ngFor="let child of children; let childId = index">
+                            <div class="form-box" *ngIf="!child.removed">
+                                <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
+                                <sg-server-method-field *ngFor="let f of child.type.fields"
+                                    [path]="path + '[' + childId + ']'"
+                                    [field]="f"
+                                    [fields]="fields"
+                                    [types]="types"></sg-server-method-field>
+                            </div>
+                        </ng-container>
+                    </section>
+                </ng-container>
+            </ng-container>
         </ng-container>
         <!-- <ng-container *ngSwitchCase="'bytes'">
             <div class="form-group">
@@ -115,7 +291,7 @@
                             <div class="form-box" *ngIf="!child.removed">
                                 <clr-icon *ngIf="path" class="remove-btn" shape="times" (click)="removeChild(childId)"></clr-icon>
                                 <sg-server-method-field *ngFor="let f of child.type.fields"
-                                    [path]="path + '.' + field.name + (field.repeated ? ('[' + childId + ']') : '' )"
+                                    [path]="path + (field.repeated ? ('[' + childId + ']') : '') + '.' +  f.name"
                                     [field]="f"
                                     [fields]="fields"
                                     [types]="types"></sg-server-method-field>

@@ -1,14 +1,9 @@
 {
     "servers": [
         {
-            "name": "be-entity-events",
-            "protoPath": "protos/entity-events.proto",
-            "target": "http://google.com"
-        },
-        {
-            "name": "be-entity-events-two",
-            "protoPath": "protos/entity-events.proto",
-            "target": "http://github.com"
+            "name": "example",
+            "protoPath": "protos/example.proto",
+            "target": "http://example:80"
         }
     ]
 }
